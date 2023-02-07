@@ -6,18 +6,16 @@ variable "region" {
   
 }
 
-
 // vpc
-
 variable "vpc-name" {
   
 }
 
 
-# // firewall
-# variable "firewall-name" {
+// firewall
+variable "firewall-name" {
   
-# }
+}
 
 // subnet 
 variable "subnet-name" {
@@ -39,24 +37,47 @@ variable "subnet-cidr-2" {
 variable "subnet-region-2" {
   
 }
-
+variable "pod-range-name" {
+  
+}
+variable "pod-range-ip" {
+  
+}
+variable "service-range-name" {
+  
+}
+variable "service-range-ip" {
+  
+}
 // nat 
 variable "nat-name" {
   
 }
+variable "router-name" {
+  
+}
+variable "router-region" {
+  
+}
 
 // service account roles
-// service account permissions 
-// Compute Admin → Full control of Compute Engine resources (Virtual Machines)
-// Kubernetes Engine Admin → Full management of Kubernetes Clusters
+
 variable "rolesList" {
-    type =list(string)
-    default = ["roles/compute.admin","roles/container.admin"]
+    # default = ["roles/compute.admin","roles/container.admin"]
+}
+variable "roles-gke" {
+  
 }
 variable "sa-id" {
   
 }
 variable "sa-name" {
+  
+}
+variable "gke-sa-id" {
+  
+}
+variable "gke-sa-name" {
   
 }
 
@@ -71,5 +92,22 @@ variable "vm-zone" {
   
 }
 variable "image-name"{
+  
+}
+
+// gke 
+variable "cluster-name" {
+  
+}
+variable "cluster-location" {
+  
+}
+variable "authorized-network-name" {
+  
+}
+variable "node-pool-name" {
+  
+}
+variable "node-machine-type" {
   
 }

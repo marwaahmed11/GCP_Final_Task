@@ -5,18 +5,20 @@ resource "google_compute_network" "vpc" {
 }
 
 
-# // VPC firewall configuration applied to all instance 
-# resource "google_compute_firewall" "allow-ssh" {
-#   name    = var.firewall-name
-#   network = google_compute_network.vpc.name  // vpc
+// firewall configuration applied to spectific target
+resource "google_compute_firewall" "allow-ssh" {
+  name    = var.firewall-name
+  network = google_compute_network.vpc.name   
+  target_tags = ["vm"]
 
-#   allow {
-#     protocol = "tcp"
-#     ports    = ["22"]
-#   }
+  allow {
+    protocol = "tcp"
+    ports    = ["22","80"]
+  }
+  # target_service_accounts = [google_service_account.my-sa.email]
+  source_ranges = ["0.0.0.0/0"]
 
-#   source_ranges = ["0.0.0.0/0"]
-# }
+}
 
 // Management subnet 
 resource "google_compute_subnetwork" "management-subnet" {
@@ -26,18 +28,27 @@ resource "google_compute_subnetwork" "management-subnet" {
  region        = var.subnet-region
 }
 
-// Restricted subnet  => delete route to igw ////
+// Restricted subnet  
 resource "google_compute_subnetwork" "restricted-subnet" {
  name          = var.subnet-name-2
  ip_cidr_range = var.subnet-cidr-2
  network       = google_compute_network.vpc.id
  region        = var.subnet-region-2
+
+  secondary_ip_range {
+    range_name    = var.pod-range-name
+    ip_cidr_range = var.pod-range-ip 
+  }
+  secondary_ip_range {
+    range_name    = var.service-range-name
+    ip_cidr_range = var.service-range-ip
+  }
 }
 
 # Cloud Router
 resource "google_compute_router" "router" {
-  name    = "router"
-  region = "us-central1"
+  name    = var.router-name
+  region = var.router-region 
   network = google_compute_network.vpc.id
   bgp {
     asn            = 64514
@@ -45,8 +56,7 @@ resource "google_compute_router" "router" {
   }
 }
 
-# NAT Gateway  // allow instance with private ip to access internet 
-# https://www.terraform.io/docs/providers/google/r/compute_router_nat.html
+# NAT Gateway  
 resource "google_compute_router_nat" "nat" {
   name                               = var.nat-name
   router                             = google_compute_router.router.name
@@ -55,7 +65,7 @@ resource "google_compute_router_nat" "nat" {
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS" 
 
   subnetwork {
-    name                    = google_compute_subnetwork.management-subnet.id ////// management subnet only
+    name                    = google_compute_subnetwork.management-subnet.id 
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }

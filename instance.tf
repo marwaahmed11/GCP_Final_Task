@@ -1,4 +1,4 @@
-// SA
+// vm SA
 resource "google_service_account" "my-sa" {
   account_id   = var.sa-id 
   display_name = var.sa-name 
@@ -7,8 +7,7 @@ resource "google_service_account" "my-sa" {
 // roles of sa
 resource "google_project_iam_binding" "my-sa-roles" {
 project = var.project-id
-count = length(var.rolesList)
-role =  var.rolesList[count.index]
+role =  var.rolesList
 members = [
   "serviceAccount:${google_service_account.my-sa.email}"
 ]
@@ -19,6 +18,7 @@ resource "google_compute_instance" "vm" {
   name         = var.vm-name 
   machine_type = var.machine-type
   zone         = var.vm-zone
+  tags         = ["vm"]
 
   boot_disk {
     initialize_params {
@@ -32,9 +32,10 @@ resource "google_compute_instance" "vm" {
   }
 
   service_account {
-    email  = google_service_account.my-sa.email
+    email  = google_service_account.my-gke-sa.email
     scopes = ["cloud-platform"]
   }
+
 }
 
 
