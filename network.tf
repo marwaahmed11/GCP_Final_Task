@@ -17,6 +17,7 @@ resource "google_compute_firewall" "allow-ssh" {
   }
   target_service_accounts = [google_service_account.my-gke-sa.email]
   source_ranges = ["0.0.0.0/0"]
+  direction = "INGRESS"
 
 }
 

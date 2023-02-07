@@ -79,7 +79,7 @@ resource "google_container_node_pool" "private-cluster-nodes" {
   node_config {
     preemptible  = true 
     machine_type = var.node-machine-type
-    service_account = google_service_account.my-sa.email
+    # service_account = google_service_account.my-sa.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
