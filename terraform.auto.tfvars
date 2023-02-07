@@ -11,7 +11,7 @@ firewall-name = "terraform-allow-ssh"
 // subnet 
 subnet-name   = "management-subnet"
 # subnet-cidr = "10.0.0.0/24"  // management subnet  
-subnet-cidr = "10.1.0.0/18"  // management subnet 
+subnet-cidr = "10.1.0.0/18"  
 subnet-region      = "us-central1"
 
 subnet-name-2   = "restricted-subnet"
@@ -23,7 +23,7 @@ pod-range-ip = "10.48.0.0/14"
 service-range-name = "k8s-service-range"
 service-range-ip = "10.52.0.0/20"
 
-rolesList = "roles/compute.admin"
+roles = "roles/storage.objectViewer"
 roles-gke = "roles/container.admin"
   
 

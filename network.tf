@@ -9,13 +9,13 @@ resource "google_compute_network" "vpc" {
 resource "google_compute_firewall" "allow-ssh" {
   name    = var.firewall-name
   network = google_compute_network.vpc.name   
-  target_tags = ["vm"]
+  # target_tags = ["vm"]
 
   allow {
     protocol = "tcp"
     ports    = ["22","80"]
   }
-  # target_service_accounts = [google_service_account.my-sa.email]
+  target_service_accounts = [google_service_account.my-gke-sa.email]
   source_ranges = ["0.0.0.0/0"]
 
 }

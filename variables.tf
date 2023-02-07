@@ -62,8 +62,8 @@ variable "router-region" {
 
 // service account roles
 
-variable "rolesList" {
-    # default = ["roles/compute.admin","roles/container.admin"]
+variable "roles" {
+   
 }
 variable "roles-gke" {
   
