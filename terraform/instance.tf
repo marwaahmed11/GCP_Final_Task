@@ -1,19 +1,20 @@
-// gke SA
-resource "google_service_account" "my-gke-sa" {
-  account_id   = var.gke-sa-id 
-  display_name = var.gke-sa-name 
+// vm SA
+resource "google_service_account" "my-vm-sa" {
+  account_id   = var.vm-sa-id 
+  display_name = var.vm-sa-name 
 }
 
 // roles of sa
-resource "google_project_iam_binding" "my-gke-sa-roles" {
+resource "google_project_iam_binding" "my-vm-sa-roles" {
 project = var.project-id
-count = length(var.roles-gke)
-role =  var.roles-gke[count.index]
+role =  var.roles-vm
 
 members = [
-  "serviceAccount:${google_service_account.my-gke-sa.email}"
+  "serviceAccount:${google_service_account.my-vm-sa.email}"
 ]
 }
+
+
 
 // private vm
 resource "google_compute_instance" "vm" {
@@ -34,7 +35,7 @@ resource "google_compute_instance" "vm" {
   }
 
   service_account {
-    email  = google_service_account.my-gke-sa.email
+    email  = google_service_account.my-vm-sa.email
     scopes = ["cloud-platform"]
   }
 

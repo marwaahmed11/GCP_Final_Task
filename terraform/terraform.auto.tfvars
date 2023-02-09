@@ -23,8 +23,6 @@ service-range-name = "k8s-service-range"
 service-range-ip = "10.52.0.0/20"
 
 
-roles-gke = ["roles/container.admin","roles/storage.objectAdmin"]
-  
 
 // nat 
 nat-name = "terraform-nat"
@@ -32,10 +30,14 @@ router-name = "router"
 router-region = "us-central1"
 
 // sa
-sa-id = "my-terraform-sa"
-sa-name = "my-terraform-sa"
 gke-sa-id = "my-gke-sa"
 gke-sa-name = "my-gke-sa"
+roles-gke = "roles/storage.objectViewer"
+
+vm-sa-id = "my-vm-sa"
+vm-sa-name = "my-vm-sa"
+roles-vm= "roles/container.admin"
+  
 
 // vm 
 vm-name = "terraform-private-vm"

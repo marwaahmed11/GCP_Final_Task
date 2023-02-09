@@ -1,3 +1,20 @@
+// gke SA
+resource "google_service_account" "my-gke-sa" {
+  account_id   = var.gke-sa-id 
+  display_name = var.gke-sa-name 
+}
+
+// roles of sa
+resource "google_project_iam_binding" "my-gke-sa-roles" {
+project = var.project-id
+role =  var.roles-gke
+
+members = [
+  "serviceAccount:${google_service_account.my-gke-sa.email}"
+]
+}
+
+
 // gke cluster
 resource "google_container_cluster" "private-cluster" {
   name                     = var.cluster-name
@@ -43,8 +60,11 @@ resource "google_container_node_pool" "private-cluster-nodes" {
   node_config {
     preemptible  = true 
     machine_type = var.node-machine-type
+    service_account = google_service_account.my-gke-sa.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
+
+ 
 }

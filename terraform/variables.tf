@@ -61,20 +61,25 @@ variable "router-region" {
 // service account roles
 
 
-variable "roles-gke" {
-  
-}
-variable "sa-id" {
-  
-}
-variable "sa-name" {
-  
-}
 variable "gke-sa-id" {
   
 }
 variable "gke-sa-name" {
   
+}
+variable "roles-gke" {
+
+}
+
+
+variable "vm-sa-id" {
+  
+}
+variable "vm-sa-name" {
+  
+}
+variable "roles-vm" {
+ 
 }
 
 // vm 
