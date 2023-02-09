@@ -9,7 +9,7 @@
 ### Download the code 
 https://github.com/atefhares/DevOps-Challenge-Demo-Code
 
-### Build dockerfile and push image to GCR 
+### Build dockerfile for python app and push image to GCR locally from your machine
 ```bash
  gcloud config set default service account
  gcloud auth list
@@ -48,7 +48,7 @@ kubectl get all
 
 ```
 
-![vm2](https://user-images.githubusercontent.com/63955669/217813564-abe24064-299a-452f-96bd-9f877b222015.png)
+![final](https://user-images.githubusercontent.com/63955669/217941923-42ccee64-8b2f-4f42-ab0d-6ca1a1b4425f.png)
 
 
 
