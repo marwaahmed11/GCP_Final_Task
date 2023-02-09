@@ -2,6 +2,7 @@
 
 ##  Infrastructure is created on GCP using terraform.
 ### To run terraform infrastructre 
+- gcloud auth application-default login
 - terraform init
 - terraform plan
 - terraform apply
