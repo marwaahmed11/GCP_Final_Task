@@ -39,8 +39,8 @@ gcloud container clusters get-credentials terraform-private-cluster --zone us-ce
 ### Connect ssh to gke 
 #### ConfigMap is used to store data as key-value pairs instead of writing enviroment variables hard-coded in the docker file.So, if you want to make any changes in values of enviroment variable you should update them in config map.
 ```bash
-kubectl apply -f redis–sevice.yaml
 kubectl apply -f redis–deployment.yaml
+kubectl apply -f redis–sevice.yaml
 kubectl apply -f configMap.yaml
 kubectl apply -f deployment.yaml
 kubectl apply -f load-balancer-service.yaml

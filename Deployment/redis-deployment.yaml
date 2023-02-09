@@ -5,7 +5,7 @@ metadata:
   labels:
     app: redis
 spec:
-  replicas: 3  # replica set
+  replicas: 1  # replica set
   selector:
     matchLabels:
       app: redis
@@ -19,3 +19,4 @@ spec:
         image: gcr.io/warm-pixel-375711/redis
         ports:
         - containerPort: 6379
+
