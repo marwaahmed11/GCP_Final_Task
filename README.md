@@ -27,7 +27,6 @@ https://github.com/atefhares/DevOps-Challenge-Demo-Code
 ## Connect ssh to vm 
 ```bash
   sudo apt update
-  sudo apt install docker.io
   sudo apt-get install kubectl
   sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
 ```
