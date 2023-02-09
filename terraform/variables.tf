@@ -5,12 +5,10 @@ variable "project-id" {
 variable "region" {
   
 }
-
 // vpc
 variable "vpc-name" {
   
 }
-
 
 // firewall
 variable "firewall-name" {

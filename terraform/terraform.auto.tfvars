@@ -23,7 +23,7 @@ service-range-name = "k8s-service-range"
 service-range-ip = "10.52.0.0/20"
 
 
-roles-gke = ["roles/container.admin","roles/storage.objectAdmin"]
+roles-gke = ["roles/container.admin","roles/storage.admin"]
   
 
 // nat 

@@ -4,7 +4,7 @@ metadata:
   name: config-map
 data:
   ENVIRONMENT: "DEV"
-  HOST: "localhost" # host of python 
+  HOST: "localhost" # python host
   PORT: "8000"        # python port
   REDIS_HOST: "redis-service"
   REDIS_PORT: "6379"
