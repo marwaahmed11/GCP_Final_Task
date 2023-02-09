@@ -25,15 +25,15 @@ https://github.com/atefhares/DevOps-Challenge-Demo-Code
  gcloud config set accountmy-gke-sa@warm-pixel-375711.iam.gserviceaccount.com
  gcloud auth list
  gcloud auth configure-docker
- docker build -t python-app .
- docker tag python-app gcr.io/warm-pixel-375711/python-app 
- docker push gcr.io/warm-pixel-375711/python-app 
+ sudo docker build -t python-app .
+ sudo docker tag python-app gcr.io/warm-pixel-375711/python-app 
+ sudo docker push gcr.io/warm-pixel-375711/python-app 
 ```
 ### Pull redis image from dockerhub and push it to GCR
 ```bash
- docker pull redis
- docker tag redis gcr.io/warm-pixel-375711/redis
- docker push gcr.io/warm-pixel-375711/redis
+ sudo docker pull redis
+ sudo docker tag redis gcr.io/warm-pixel-375711/redis
+ sudo docker push gcr.io/warm-pixel-375711/redis
  ```
 
 ### Connect ssh to gke 
