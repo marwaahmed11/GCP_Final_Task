@@ -62,9 +62,7 @@ variable "router-region" {
 
 // service account roles
 
-variable "roles" {
-   
-}
+
 variable "roles-gke" {
   
 }

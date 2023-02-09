@@ -1,18 +1,3 @@
-// gke SA
-resource "google_service_account" "my-gke-sa" {
-  account_id   = var.gke-sa-id 
-  display_name = var.gke-sa-name 
-}
-
-// roles of sa
-resource "google_project_iam_binding" "my-gke-sa-roles" {
-project = var.project-id
-role =  var.roles-gke
-members = [
-  "serviceAccount:${google_service_account.my-gke-sa.email}"
-]
-}
-
 // gke cluster
 resource "google_container_cluster" "private-cluster" {
   name                     = var.cluster-name
@@ -22,11 +7,6 @@ resource "google_container_cluster" "private-cluster" {
   network                  = google_compute_network.vpc.self_link
   subnetwork               = google_compute_subnetwork.restricted-subnet.self_link
 
-  addons_config {
-    http_load_balancing {
-      disabled = true
-    }
-  }
 
  release_channel {
     channel = "REGULAR"
@@ -53,22 +33,6 @@ resource "google_container_cluster" "private-cluster" {
   }
 }
 
-// vm SA
-resource "google_service_account" "my-sa" {
-  account_id   = var.sa-id 
-  display_name = var.sa-name 
-}
-
-// roles of sa
-resource "google_project_iam_binding" "my-sa-roles" {
-project = var.project-id
-role =  var.roles
-members = [
-  "serviceAccount:${google_service_account.my-sa.email}"
-]
-}
-
-
 // gke node 
 resource "google_container_node_pool" "private-cluster-nodes" {
   name       = var.node-pool-name
@@ -79,7 +43,6 @@ resource "google_container_node_pool" "private-cluster-nodes" {
   node_config {
     preemptible  = true 
     machine_type = var.node-machine-type
-    # service_account = google_service_account.my-sa.email
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]

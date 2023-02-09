@@ -15,8 +15,8 @@ resource "google_compute_firewall" "allow-ssh" {
     protocol = "tcp"
     ports    = ["22","80"]
   }
-  target_service_accounts = [google_service_account.my-gke-sa.email]
-  source_ranges = ["0.0.0.0/0"]
+  # target_service_accounts = [google_service_account.my-gke-sa.email]
+  source_ranges = ["35.235.240.0/20"]
   direction = "INGRESS"
 
 }
