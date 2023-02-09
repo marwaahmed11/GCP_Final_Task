@@ -39,3 +39,5 @@ CMD [ "python", "hello.py" ]
 # docker build -t python-app3 .
 # docker run <imagename> 
 # docker inspect 
+
+# sudo apt install docker.io
